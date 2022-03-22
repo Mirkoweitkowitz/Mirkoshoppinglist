@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
+
+
 <head>
     <title>Like Button</title>
 
@@ -8,26 +10,45 @@
     <meta name="copyright" content="Syntax Institut, 2022">
     <meta name="description" content="Like-Button mit React.js">
 
-    <!-- ToDo: füge hier die Script-Tags für die JavaScript-Bibliotheken ein -->
+    <script src="../lib/react.development.js"></script>
+    <script src="../lib/react-dom.development.js"></script>
+    <script src="../lib/babel.min.js"></script>
 
+    <script src="../lektion1b/js/Like_Button.js" type="text/babel"></script>
 
+<style>button {
+    padding:16px;
+    background-color: greenyellow
+}</style>
 
+    <style>p{
+    padding: 16px;
+    width: min-content;
+    background-color: darkseagreen;
+    font-size:30px;
+    color: snow;
+    }</style>
 
-    <!-- ToDo: importiere hier mit Hilfe eines Script-Tags die Like_Button.js Datei -->
 
 
 </head>
 
 <body>
 
-<h2>Der tägliche Struggle eines App-Developers</h2>
+<h2>HaHa das bin ich</h2>
 <IMG SRC="struggle.gif">
 
 <div id="root"></div>
 
-<!-- ToDo: Füge hier Script-Tags des types Babel hinzu -->
+<script type="text/babel">
 
-<!-- ToDo: Nutze innerhalb der Script-Tags ReactDOM.render(), um den die .js-Datei anzuzeigen -->
+
+    ReactDOM.render(<Like_Button/>,
+
+      document.querySelector('#root'),
+    );
+</script>
+
 
 
 

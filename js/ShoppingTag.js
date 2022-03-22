@@ -22,18 +22,11 @@ class ShoppingTag extends React.Component {
                             <i className="material-icons">expand_less</i>
                         </h2>
                         <dl>
-                            <dt>Obst & Gemüse
-                                <i className="material-icons">expand_less</i>
-                            </dt>
-                            <dd><label><input type="checkbox"></input> Brokkoli</label></dd>
-                            <dt>Getreideprodukte
-                                <i className="material-icons">expand_less</i>
-                            </dt>
-                            <dd><label><input type="checkbox"></input> Reis</label></dd>
-                            <dt>Milchprodukte
-                                <i className="material-icons">expand_less</i>
-                            </dt>
-                            <dd><label><input type="checkbox"></input> Streukäse</label></dd>
+                           <GruppenTag/>
+                            <GruppenTag/>
+                            <GruppenTag/>
+                            <GruppenTag/>
+
                         </dl>
                     </section>
                     <hr/>
@@ -43,10 +36,7 @@ class ShoppingTag extends React.Component {
                             <i className="material-icons">expand_less</i>
                         </h2>
                         <dl>
-                            <dt>Hülsenfrüchte
-                                <i className="material-icons">expand_less</i>
-                            </dt>
-                            <dd><label><input type="checkbox"></input> <s>Tofu</s></label></dd>
+                            <GruppenTag/>
                         </dl>
                     </section>
                 </main>

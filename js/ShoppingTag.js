@@ -1,5 +1,16 @@
 // noinspection JSXNamespaceValidation
 class ShoppingTag extends React.Component {
+    constructor() {
+        super();
+        let gruppe1 =App.gruppeHinzufuegen("Obst & Gemüse")
+        gruppe1.artikelHinzufuegen("Brokkoli")
+        gruppe1.artikelHinzufuegen("Mais")
+        gruppe1.artikelHinzufuegen("Blumenkohl")
+        gruppe1.artikelHinzufuegen("Rosenkohl")
+
+        let gruppe2 =App.gruppeHinzufuegen("Getränke")
+        gruppe2.artikelHinzufuegen("Selter")
+    }
     render = () => {
         return (
 
@@ -22,11 +33,10 @@ class ShoppingTag extends React.Component {
                             <i className="material-icons">expand_less</i>
                         </h2>
                         <dl>
-                           <GruppenTag/>
-                            <GruppenTag/>
-                            <GruppenTag/>
-                            <GruppenTag/>
 
+                            {App.gruppenListe.map(gruppe => (
+                                <GruppenTag key={gruppe.id} gruppe={gruppe}/>
+                            ))}
                         </dl>
                     </section>
                     <hr/>
@@ -36,7 +46,9 @@ class ShoppingTag extends React.Component {
                             <i className="material-icons">expand_less</i>
                         </h2>
                         <dl>
-                            <GruppenTag/>
+                            {App.gruppenListe.map(gruppe=> (
+                                <GruppenTag key={gruppe.id} gruppe={gruppe} erledigt={true}/>
+                            ))}
                         </dl>
                     </section>
                 </main>

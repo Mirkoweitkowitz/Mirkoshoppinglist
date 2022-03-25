@@ -1,4 +1,4 @@
-/*ToDo: Füge hinter 'extends' den fehlenden Ausdruck ein und entferne die Kommentar-zeichen*/
+
 
 class Like_Button extends React.Component {
     constructor(props) {

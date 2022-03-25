@@ -13,44 +13,52 @@
   <script src="lib/react-dom.development.js"></script>
   <script src="lib/babel.min.js"></script>
 
-  <script src="Like_Button.js"></script>
-  <script src="Unlike_Button.js"></script>
-  <script src="Counter.js"></script>
+  <script src="js/lektion3/Like_Button.js" type="text/babel"></script>
+  <script src="js/lektion3/Unlike_Button.js" type="text/babel"></script>
+  <script src="js/lektion3/Counter.js" type="text/babel"></script>
 
 
+  <style>button {
+      padding:16px;
+      background-color: greenyellow
+  }</style>
+  <style>p{
+      padding: 16px;
+      width: min-content;
+      background-color: darkseagreen;
+      font-size:30px;
+      color: snow;
+  }</style>
 </head>
 
 <body>
 
-<script type="text/babel" src="js/Like_Button.js"></script>
-<script type="text/babel" src="js/Unlike_Button.js"></script>
-<script type="text/babel" src="js/Counter.js"></script>
+
+
+<h2> 🤯 Mirko ist hier und ändert alles 🤯</h2>
+<IMG SRC="img/struggle.gif">
+
+
+<div id="root"></div>
 
 <script type="text/babel">
     ReactDOM.render(
 
-        <div>
-            <Like_Button/>,
-            <Unlike_Buttons.js/>
-            <Counter.js/>
+      <div>
+            <Like_Button/>
 
-        </div>,
-    document.querySelector('#root')
+            <Unlike_Button/>
+
+            <Counter/>
+
+
+      </div>,
+
+        document.querySelector('#root')
     )
+
 </script>
-
-
-
-<h2>Der tägliche Struggle eines Developers</h2>
-<IMG SRC="img/struggle.gif">
-<p></p>
-
-<div id="root"></div>
-
-<!-- ToDo: Füge hier Script-Tags des types Babel hinzu -->
-
-<!-- ToDo: Nutze innerhalb der Script-Tags ReactDOM.render(), um den die .js-Datei anzuzeigen -->
-
+<IMG SRC="img/mirko.JPG">
 
 </body>
 </html>

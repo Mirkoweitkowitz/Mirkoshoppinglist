@@ -7,15 +7,18 @@ class Like_Button extends React.Component{
 
     render = () => {
 
-        /*ToDo: Füge hier eine if-Anweisung hinzu, die "Dir gefällt das." zurückgibt, wenn sich der state zu liked verändert */
-
-
+            if (this.state.liked) { true;
+                return <p>"na gefällt Dir das."</p>
+            }
         return (
-          <div>
-              <!-- ToDo: Füge hier HTML-Code ein, der einen "Gefällt Mir"-Button beinhaltet und ein onClick-Even verarbeitet -->
-          </div>
+            <div>
+                <button onClick={() => this.setState({ liked: true })}>na gefällt Dir das</button>
 
 
-        );
-    }
+            </div>
+
+        )
+        }
+
+
 }

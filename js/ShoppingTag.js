@@ -2,25 +2,40 @@
 class ShoppingTag extends React.Component {
     constructor() {
         super();
-        let gruppe1 =App.gruppeHinzufuegen("Obst & Gemüse")
+       /* console.debug(App.allesAuflisten())
+        console.debug(App.gruppeUmbenennen())
+        console.debug(App.gruppeEntfernen())*/
+
+        this.state = {
+            aktivegruppe: null,
+        }
+
+        let gruppe1
+        gruppe1 = App.gruppeHinzufuegen("Obst & Gemüse")
         gruppe1.artikelHinzufuegen("Brokkoli")
         gruppe1.artikelHinzufuegen("Mais")
         gruppe1.artikelHinzufuegen("Blumenkohl")
         gruppe1.artikelHinzufuegen("Rosenkohl")
 
-        let gruppe2 =App.gruppeHinzufuegen("Getränke")
+        let gruppe2 = App.gruppeHinzufuegen("Getränke")
         gruppe2.artikelHinzufuegen("Selter")
+
+    }
+
+    setAktiveGruppe = (gruppenId) => {
+        App.aktiveGruppe = gruppenId
+        this.setState({aktiveGruppe: App.aktiveGruppe})
+        console.debug(this.state.aktiveGruppe)
     }
     render = () => {
         return (
-
 
             <div>
 
                 <header>
                     <h1>Einkaufsliste</h1>
                     <nav>
-                        <input type="text" placeholder="Artikel hinzufügen"></input>
+                        <input type="text" placeholder="Artikel hinzufügen"/>
                         <button className="material-icons">add_circle</button>
                     </nav>
                 </header>
@@ -35,7 +50,9 @@ class ShoppingTag extends React.Component {
                         <dl>
 
                             {App.gruppenListe.map(gruppe => (
-                                <GruppenTag key={gruppe.id} gruppe={gruppe}/>
+                                <GruppenTag key={gruppe.id} gruppe={gruppe} erledigt={false}
+                                            aktiveGruppeHandler={this.setAktiveGruppe}
+                                aktiv={gruppe.id == App.aktiveGruppe}/>
                             ))}
                         </dl>
                     </section>
@@ -46,8 +63,10 @@ class ShoppingTag extends React.Component {
                             <i className="material-icons">expand_less</i>
                         </h2>
                         <dl>
-                            {App.gruppenListe.map(gruppe=> (
-                                <GruppenTag key={gruppe.id} gruppe={gruppe} erledigt={true}/>
+                            {App.gruppenListe.map(gruppe => (
+                                <GruppenTag key={gruppe.id} gruppe={gruppe} erledigt={true}
+                                            aktiveGruppeHandler={this.setAktiveGruppe}
+                                inaktiv={gruppe.id == App.oktiveGruppe}/>
                             ))}
                         </dl>
                     </section>

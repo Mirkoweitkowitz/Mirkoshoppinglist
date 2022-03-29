@@ -2,9 +2,7 @@
 class ShoppingTag extends React.Component {
     constructor() {
         super();
-       /* console.debug(App.allesAuflisten())
-        console.debug(App.gruppeUmbenennen())
-        console.debug(App.gruppeEntfernen())*/
+
 
         this.state = {
             aktivegruppe: null,
@@ -20,13 +18,32 @@ class ShoppingTag extends React.Component {
         let gruppe2 = App.gruppeHinzufuegen("Getränke")
         gruppe2.artikelHinzufuegen("Selter")
 
+        let gruppe3
+        gruppe3 = App.gruppeHinzufuegen("Getreideprodukte")
+        gruppe3.artikelHinzufuegen("Reis")
+
+        let gruppe4
+        gruppe4 = App.gruppeHinzufuegen("Milchprodukte")
+        gruppe4.artikelHinzufuegen("Streukäse")
+        gruppe4.artikelHinzufuegen("Geheimratskäse")
+
+        let gruppe5
+        gruppe5 = App.gruppeHinzufuegen("Hülsenfrüchte")
+        gruppe5.artikelHinzufuegen("Linsen")
+
+        let gekaufterArtikel = gruppe4.artikelHinzufuegen("Milch")
+        gekaufterArtikel.gekauft = true
+
     }
+
+
 
     setAktiveGruppe = (gruppenId) => {
         App.aktiveGruppe = gruppenId
         this.setState({aktiveGruppe: App.aktiveGruppe})
         console.debug(this.state.aktiveGruppe)
     }
+
     render = () => {
         return (
 

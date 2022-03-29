@@ -1,13 +1,25 @@
 /**
  * 1) Erstelle die clickHandler Funktion und den Button mit onClick Event.
  */
-function FunctionClick() {
-  //ToDo: Füge hier deine clickHandler Funktion ein
-  return(
-    <div>
-      //ToDo: Füge hier deinen Button ein!
-    </div>
-  )
+class FunctionClick extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isAlarmOn: true};
+
+  }
+
+  handleClick=()=>{
+    this.setState({isAlarmOn:!this.state.isAlarmOn})
+    alert('Du hast auf mich geklickt!')
+  }
+
+  render() {
+    return (
+        <button onClick={this.handleClick}>
+          {this.state.isAlarmOn ? 'Alarm' : 'Du hast auf mich geklickt!'}
+        </button>
+    );
+  }
 }
 
 const element =<FunctionClick />;
@@ -31,7 +43,11 @@ class Counter extends React.Component {
   }
   render() {
     return <div>
-      //ToDo: Füge hier dein Event ein!
+
+      <button onClick={this.increment}> Anzahl Klicks! {this.state.counter}
+
+      </button>
+
     </div>;
   }
 }

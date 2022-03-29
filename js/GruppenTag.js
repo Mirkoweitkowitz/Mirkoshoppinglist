@@ -6,14 +6,15 @@ class GruppenTag extends React.Component {
 
         return (
             <div>
-                <dt className={this.props.aktiv && !erledigr ? "aktiv" : "inaktiv"}
-                onClick={() => !erledigt ? this.props.aktiveGruppeHandler(this.props.gruppe.id) : ``}>;
+                <dt className={this.props.aktiv && !erledigt ?"aktiv" : "inaktiv"}
+                onClick={() => !erledigt ? this.props.aktiveGruppeHandler(this.props.gruppe.id) : ``}>
+                    {this.props.gruppe.name}
                     <i className="material-icons">expand_less</i>
                 </dt>
                 {itemsRelevant.map(artikel => (
-                    <ArtikelTag key={artikel.id} artikel={artikel}/>
+                        <ArtikelTag key={artikel.id} artikel={artikel}/>
                 ))}
             </div>
         )
     }
-}
+    }

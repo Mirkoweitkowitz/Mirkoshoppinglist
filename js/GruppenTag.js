@@ -22,7 +22,7 @@ class GruppenTag extends React.Component {
                     <i className="material-icons">expand_less</i>
                 </dt>
                 {itemsRelevant.map(artikel => (
-                    <ArtikelTag key={artikel.id} artikel={artikel} deleteHandler={this.artikelEntfernen}/>
+                    <ArtikelTag key={artikel.id} artikel={artikel} deleteHandler={this.artikelEntfernen} checkHandler={this.props.checkHandler}/>
                 ))}
             </div>
         )

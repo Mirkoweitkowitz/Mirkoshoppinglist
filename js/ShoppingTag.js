@@ -15,27 +15,34 @@ class ShoppingTag extends React.Component {
 
         let gruppe2 = App.gruppeHinzufuegen("Getränke")
         gruppe2.artikelHinzufuegen("Selter")
+        gruppe2.artikelHinzufuegen("Cola")
+        gruppe2.artikelHinzufuegen("Wasser mit Geschmack")
 
         let gruppe3
         gruppe3 = App.gruppeHinzufuegen("Getreideprodukte")
         gruppe3.artikelHinzufuegen("Reis")
+        gruppe3.artikelHinzufuegen("Nudeln")
+        gruppe3.artikelHinzufuegen("Brot")
 
         let gruppe4
         gruppe4 = App.gruppeHinzufuegen("Milchprodukte")
         gruppe4.artikelHinzufuegen("Streukäse")
         gruppe4.artikelHinzufuegen("Geheimratskäse")
+        gruppe4.artikelHinzufuegen("Milch")
 
         let gruppe5
         gruppe5 = App.gruppeHinzufuegen("Hülsenfrüchte")
         gruppe5.artikelHinzufuegen("Linsen")
+        gruppe5.artikelHinzufuegen("Bohnen")
 
-        let gekaufterArtikel = gruppe4.artikelHinzufuegen("Milch")
+        let gekaufterArtikel = gruppe4.artikelHinzufuegen("Linsen")
         gekaufterArtikel.gekauft = true
 
     }
 
     artikelHinzufuegen = () => {
         let eingabe = document.getElementById("artikelEingabe")
+        console.debug(eingabe)
         if (eingabe.value.trim().length > 0) {
                 let alle = App.gruppeFinden(App.aktiveGruppe)
             alle.artikelHinzufuegen(eingabe.value)
@@ -52,9 +59,7 @@ class ShoppingTag extends React.Component {
     }
     artikelChecken = (artikel) => {
         artikel.gekauft = !artikel.gekauft
-        let checkHandler = App.gruppeFinden(App.aktiveGruppe)
-        checkHandler.artikelChecken(artikel.value)
-        this.setState(this.state.artikelChecken)
+        this.setState(this.state)
     }
     closesortierDialog = (reihenfolge, sortieren) => {
 
@@ -77,8 +82,8 @@ render = () => {
             <header>
                 <h1>Einkaufsliste</h1>
                 <nav>
-                    <input type="text" placeholder="Artikel hinzufügen"/>
-                    <button className="material-icons">add_circle</button>
+                    <input id="artikelEingabe" type="text" placeholder="Artikel hinzufügen"/>
+                    <button onClick={() =>this.artikelHinzufuegen()} className="material-icons">add_circle</button>
                 </nav>
             </header>
 
@@ -94,7 +99,9 @@ render = () => {
                         {App.gruppenListe.map(gruppe => (
                             <GruppenTag key={gruppe.id} gruppe={gruppe} erledigt={false}
                                         aktiveGruppeHandler={this.setAktiveGruppe}
-                                        aktiv={gruppe.id == App.aktiveGruppe}/>
+                                        checkHandler={this.artikelChecken}
+                                        aktiv={gruppe.id == App.aktiveGruppe}
+                            />
                         ))}
                     </dl>
                 </section>

@@ -7,14 +7,22 @@ class SettingsDialog extends React.Component {
             visible: true
         }
     }
+    gruppeHinzufuegen =()=>{
 
+    }
     render = () => {
         return (
 
             <div className={this.props.visible ?"mdc-dialog mdc-dialog--open": "mdc-dialog"}>
                 <div className="mdc-dialog__container">
                     <div className= "mdc-dialog__surface">
-                       SettingsDialog
+                        <h2 className="mdc-dialog__title">Settings bearbeiten</h2>
+                        <div className="mdc-dialog__content">
+                            <nav><input id="textfeld"/><button className="material-icons button-yellow" onClick={this.gruppeHinzufuegen}>add_circle</button></nav>
+
+                            <hr/>
+                        </div>
+
                     </div>
                 </div>
             </div>

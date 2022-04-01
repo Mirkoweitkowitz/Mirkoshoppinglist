@@ -87,9 +87,9 @@ render = () => {
                 <h1>Einkaufsliste</h1>
                 <nav>
                     <input id="artikelEingabe" type="text" placeholder="Artikel hinzufügen"/>
-                    <button onClick={() =>this.artikelHinzufuegen()} className="material-icons">add_circle</button>
-                    <button className="material-icons">card_giftcard</button>
-                    <button className="material-icons">card_membership</button>
+                    <button onClick={() =>this.artikelHinzufuegen()} className="material-icons circle-orange">add_circle</button>
+                    <button className="material-icons card-blue">card_giftcard</button>
+                    <button className="material-icons member-blue">card_membership</button>
 
                 </nav>
             </header>
@@ -133,17 +133,17 @@ render = () => {
             <footer>
                 <nav>
                     <button onClick={()=>this.setState({showGruppenDialog:true})}>
-                        <span className="material-icons">bookmark_add</span> Gruppen
+                        <span className="material-icons book-green">bookmark_add</span> Gruppen
                     </button>
                     <button onClick={()=>this.setState({showSortierDialog:true})}>
-                        <span className="material-icons">sort</span> Sortieren
+                        <span className="material-icons sort-green">sort</span> Sortieren
                     </button>
                     <button onClick={()=>this.setState({showSettingsDialog:true})}>
-                        <span className="material-icons">settings</span> Einstellungen
+                        <span className="material-icons set-green">settings</span> Einstellungen
                     </button>
                 </nav>
             </footer>
-            <GruppenDialog visible={this.state.showGruppenDialog} onDialogClose={()=>this.setState({showGruppenDialog:false})}/>
+            <GruppenDialog visible={this.state.showGruppenDialog} onDialogClose={()=>this.setState({showGruppenDialog:false})} gruppenListe={App.gruppenListe}/>
             <SortierDialog visible={this.state.showSortierDialog} onDialogClose={()=>this.setState({showSortierDialog:false})}/>
             <SettingsDialog visible={this.state.showSettingsDialog} onDialogClose={()=>this.setState({showSettingsDialog:false})}/>
         </div>

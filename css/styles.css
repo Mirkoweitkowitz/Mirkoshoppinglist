@@ -20,8 +20,10 @@ h2, dd {
     background-color: var(--mdc-theme-on-primary);
 }
 
-.aktiv { background-color: #4b81d6 }
-.inaktiv { background-color: #7CB342 }
+.aktiv { background-color: #0daae5
+}
+.inaktiv { background-color: #7CB342
+}
 h1, h2, dl {
     margin: 0;
 }
@@ -82,3 +84,38 @@ footer {
     -webkit-font-smoothing: antialiased;
 }
 
+button{
+    cursor: pointer;
+    pointer-events: visibleStroke ;
+}
+
+.button-yellow {
+    background-color: #e7ac8d;
+}
+.card-blue {
+    background-color: lightskyblue;
+}
+.member-blue {
+    background-color: lightskyblue;
+}
+.book-green {
+    background-color: greenyellow;
+}
+.sort-green {
+    background-color: greenyellow ;
+}
+.set-green {
+    background-color: greenyellow;
+}
+.circle-orange {
+    background-color: #e7ac8d;
+}
+.button-white {
+    background-color: white;
+    color: #212121;
+    padding: 6px;
+    margin-left: 4px;
+}
+.gruppentitel {
+    color: #212121;
+}

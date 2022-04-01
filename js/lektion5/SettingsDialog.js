@@ -1,10 +1,9 @@
-class GruppenDialog extends React.Component {
+class SettingsDialog extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             showDialog: this.props.visible,
-            gruppenListe: this.props.gruppenListe,
             visible: true
         }
     }
@@ -15,7 +14,7 @@ class GruppenDialog extends React.Component {
             <div className={this.props.visible ?"mdc-dialog mdc-dialog--open": "mdc-dialog"}>
                 <div className="mdc-dialog__container">
                     <div className= "mdc-dialog__surface">
-                            hallo
+                       SettingsDialog
                     </div>
                 </div>
             </div>
@@ -25,4 +24,3 @@ class GruppenDialog extends React.Component {
 
 
 }
-

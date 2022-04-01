@@ -5,6 +5,10 @@ class ShoppingTag extends React.Component {
 
         this.state = {
             aktivegruppe: null,
+            showGruppenDialog: false,
+            showSortierDialog: false,
+            showSettingsDialog: false
+
         }
         let gruppe1
         gruppe1 = App.gruppeHinzufuegen("Obst & Gemüse")
@@ -84,6 +88,9 @@ render = () => {
                 <nav>
                     <input id="artikelEingabe" type="text" placeholder="Artikel hinzufügen"/>
                     <button onClick={() =>this.artikelHinzufuegen()} className="material-icons">add_circle</button>
+                    <button className="material-icons">card_giftcard</button>
+                    <button className="material-icons">card_membership</button>
+
                 </nav>
             </header>
 
@@ -125,17 +132,20 @@ render = () => {
 
             <footer>
                 <nav>
-                    <button>
+                    <button onClick={()=>this.setState({showGruppenDialog:true})}>
                         <span className="material-icons">bookmark_add</span> Gruppen
                     </button>
-                    <button>
+                    <button onClick={()=>this.setState({showSortierDialog:true})}>
                         <span className="material-icons">sort</span> Sortieren
                     </button>
-                    <button>
+                    <button onClick={()=>this.setState({showSettingsDialog:true})}>
                         <span className="material-icons">settings</span> Einstellungen
                     </button>
                 </nav>
             </footer>
+            <GruppenDialog visible={this.state.showGruppenDialog} onDialogClose={()=>this.setState({showGruppenDialog:false})}/>
+            <SortierDialog visible={this.state.showSortierDialog} onDialogClose={()=>this.setState({showSortierDialog:false})}/>
+            <SettingsDialog visible={this.state.showSettingsDialog} onDialogClose={()=>this.setState({showSettingsDialog:false})}/>
         </div>
 
 

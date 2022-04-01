@@ -39,7 +39,7 @@ Deine App sollte sich bisher nicht verändert haben
 2. Gehe nun zu `ShoppingTag.js`
    1. Füge dem state von `ShoppingTag` eine Variable `showGruppenDialog` hinzu, die standardmäßig false ist 
    2. Im Footer, also nach allen relevanten Komponenten, nutze das `GruppenDialog` Tag mit folgenden properties:
-      - `visible:`, welche gleich dem state Variable showSetupDialog ist. 
+      - `visible:`, welche gleich der state Variable showGruppenDialog ist. 
       - `onDialogClose:` eine Pfeilfunktion die mithilfe der `setState` Funktion die `showGruppenDialog` Variable auf 
       `false` setzt. 
    3. Programmiere außerdem den Button, der den Dialog öffnen soll. Dies sollte mithilfe einer Pfeilfunktion geschehen. 
@@ -55,7 +55,7 @@ Durch Klicken des Buttons passiert bisher nichts.
 >![Lektion 5 - Zwischenergbnis 1](img/lektion5_ZE1.png)
 ---
 
-3. Folge nun folgenden Schritten in `ShoppingTag.js`:
+3. Folge nun folgenden Schritten in `GruppenDialog.js`:
    1. Schreibe die Überschrift für das Dialog Fenster innerhalb der divs in ein `<h2>` tag mit `className` `mdc-dialog__title`. 
    2. Nun folgt ein `<div>` tag mit `className` `mdc-dialog__content` in welches der Hauptbestandteil des Dialogs kommt, also 
    alles was bei HTML im header und main Bereich wäre. 

@@ -8,6 +8,16 @@
           "name": "Brokkoli",
           "gekauft": false,
           "index": 0
+        },
+        {
+          "name": "Blumenkohl",
+          "gekauft": false,
+          "index": 1
+        },
+        {
+          "name": "Gurken",
+          "gekauft": false,
+          "index": 2
         }
       ]
     },
@@ -40,11 +50,33 @@
           "index": 0,
           "name": "Streukäse",
           "gekauft": false
+        },
+        {
+          "index": 1,
+          "name": "Käse",
+          "gekauft": false
+        }
+      ]
+    },
+
+    {
+      "name": "Getränke",
+      "index": 3,
+      "artikelListe": [
+        {
+          "name": "Selter",
+          "index": 0,
+          "gekauft": true
+        },
+        {
+          "name": "Cola",
+          "index": 1,
+          "gekauft": true
         }
       ]
     },
     {
-      "index": 3,
+      "index": 4,
       "name": "Hülsenfrüchte",
       "artikelListe": [
         {
@@ -55,5 +87,6 @@
       ]
     }
   ],
-  "aktiveGruppe": 3
+
+  "aktiveGruppe": 5
 }

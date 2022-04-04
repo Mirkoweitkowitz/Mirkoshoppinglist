@@ -1,13 +1,190 @@
 // noinspection JSXNamespaceValidation
 class ShoppingTag extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            aktiveGruppe: null,
+            einkaufenAufgeklappt: true,
+            erledigtAufgeklappt: false,
+            showGruppenDialog: false,
+            showSortierDialog: false,
+            showShareDialog: false,
+            showWarenkorbDialog: false,
+            showGutscheineDialog: false,
+            showMemberDialog: false,
+            showFavoritenDialog: false,
+            showSettingsDialog: false,
+            showAccountDialog: false,
+
+        }
+        this.startzustandLaden()
+    }
+
+    async startzustandLaden() {
+        let gespeicherterZustand = localStorage.getItem(App.STORAGE_KEY)
+        if (gespeicherterZustand) {
+            App.laden()
+        } else {
+            await App.datenEinlesen()
+            this.setState(this.state)
+        }
+    }
+
+    setAktiveGruppe(gruppenId) {
+        App.aktiveGruppe = gruppenId
+        const gruppe = App.gruppeFinden(gruppenId)
+        App.informieren(`[App] Gruppe "${gruppe.name}" ist nun aktiv`)
+        this.setState({aktiveGruppe: App.aktiveGruppe})
+    }
+
+    artikelChecken = (artikel) => {
+        artikel.gekauft = !artikel.gekauft
+        const aktion = artikel.gekauft ? "erledigt" : "reaktiviert"
+        App.informieren(`[App] Artikel "${artikel.name}" ${aktion}`)
+        this.setState({state: this.state})
+    }
+
+    artikelHinzufuegen() {
+        let eingabe = document.getElementById("artikelEingabe")
+        if (eingabe.value.trim().length > 0) {
+            let aktiveGruppe = App.gruppeFinden(App.aktiveGruppe)
+            aktiveGruppe.artikelHinzufuegen(eingabe.value)
+            this.setState(this.state)
+        }
+        eingabe.value = ""
+        eingabe.focus()
+    }
+
+    einkaufenAufZuKlappen() {
+        this.setState({einkaufenAufgeklappt: !this.state.einkaufenAufgeklappt})
+    }
+
+    erledigtAufZuKlappen() {
+        this.setState({erledigtAufgeklappt: !this.state.erledigtAufgeklappt})
+    }
+
+    closeSortierDialog = (reihenfolge, sortieren) => {
+        if (sortieren) {
+            App.sortieren(reihenfolge)
+        }
+        this.setState({showSortierDialog: false})
+    }
+
+    render = () => {
+        return (
+            <div>
+            <div id="container">
+                <header>
+                    <h1>Einkaufsliste</h1>
+                    <nav>
+                        <input type="search" id="artikelEingabe" placeholder="Artikel hinzufügen"
+                               onKeyPress={e => (e.key == 'Enter') ? this.artikelHinzufuegen() : ''}/>
+                        <button onClick={() => this.artikelHinzufuegen()}
+                                className="material-icons button-yellow">add_circle
+                        </button>
+                        <button className="material-icons card-blue" onClick={()=>this.setState({showGutscheineDialog:true})}>
+                             card_giftcard
+                        </button>
+                        <button className="material-icons member-blue" onClick={()=>this.setState({showMemberDialog:true})}>
+                            card_membership  </button>
+                        <button className="material-icons member-blue" onClick={()=>this.setState({showFavoritenDialog:true})}>
+                            favorite </button>
+                        <button className="material-icons member-blue" onClick={()=>this.setState({showSettingsDialog:true})}>
+                            settings </button>
+                        <button className="material-icons member-blue" onClick={()=>this.setState({showAccountDialog:true})}>
+                            account_circle </button>
+                    </nav>
+                </header>
+                <hr/>
+
+                <main>
+                    <section>
+                        <h2>Einkaufen
+                            <i onClick={() => this.einkaufenAufZuKlappen()} className="material-icons">
+                                {this.state.einkaufenAufgeklappt ? 'expand_more' : 'expand_less'}
+                            </i>
+
+                        </h2>
+                        <dl>
+                            {this.state.einkaufenAufgeklappt
+                                ? App.gruppenListe.map(gruppe =>
+                                    <GruppenTag key={gruppe.id} gruppe={gruppe} gekauft={false}
+                                                aktiv={gruppe.id == App.aktiveGruppe}
+                                                aktiveGruppeHandler={() => this.setAktiveGruppe(gruppe.id)}
+                                                checkHandler={this.artikelChecken}/>)
+                                : ''}
+                        </dl>
+                    </section>
+                    <hr/>
+
+                    <section>
+                        <h2>Erledigt
+                            <i onClick={() => this.erledigtAufZuKlappen()} className="material-icons">
+                                {this.state.erledigtAufgeklappt ? 'expand_more' : 'expand_less'}
+                            </i>
+                        </h2>
+                        {this.state.erledigtAufgeklappt
+                            ? App.gruppenListe.map(gruppe =>
+                                <GruppenTag key={gruppe.id} gruppe={gruppe} gekauft={true}
+                                            aktiveGruppeHandler={() => this.setAktiveGruppe(gruppe.id)}
+                                            checkHandler={this.artikelChecken}/>)
+                            : ''}
+                    </section>
+                </main>
+                <hr/>
+            </div>
+                <footer>
+                    <nav>
+                        <button  className="button-footer" onClick={()=>this.setState({showGruppenDialog:true})}>
+                            <span className="material-icons book-green">bookmark_add</span> Gruppen
+                        </button>
+                        <button className="button-footer" onClick={() => this.setState({showSortierDialog: true})}>
+                            <span className="material-icons sort-green">sort</span> Sort
+                        </button>
+                        <button  className="button-footer" onClick={()=>this.setState({showShareDialog:true})}>
+                            <span className="material-icons share-green">share</span> Teilen
+                        </button>
+                        <button  className="button-footer" onClick={()=>this.setState({showWarenkorbDialog:true})}>
+                            <span className="material-icons warenkorb-green">shopping_cart</span> Warenkorb
+                        </button>
+                    </nav>
+                </footer>
+                <GruppenDialog visible={this.state.showGruppenDialog} onDialogClose={()=>this.setState({showGruppenDialog:false})} gruppenListe={App.gruppenListe}/>
+                <ShareDialog visible={this.state.showShareDialog} onDialogClose={()=>this.setState({showShareDialog:false})}/>
+                <WarenkorbDialog visible={this.state.showWarenkorbDialog} onDialogClose={()=>this.setState({showWarenkorbDialog:false})}/>
+                <GutscheinDialog visible={this.state.showGutscheineDialog} onDialogClose={()=>this.setState({showGutscheineDialog:false})}/>
+                <MemberDialog visible={this.state.showMemberDialog} onDialogClose={()=>this.setState({showMemberDialog:false})}/>
+                <FavoritenDialog visible={this.state.showFavoritenDialog} onDialogClose={()=>this.setState({showFavoritenDialog:false})}/>
+                {/*<SortierDialog visible={this.state.showSortierDialog} sortierung={this.state.sortierung} onDialogClose={this.closeSortierDialog}/>*/}
+                <SettingsDialog visible={this.state.showSettingsDialog} onDialogClose={()=>this.setState({showSettingsDialog:false})}/>
+                <AccountDialog visible={this.state.showAccountDialog} onDialogClose={()=>this.setState({showAccountDialog:false})}/>
+
+
+
+
+                {this.state.showSortierDialog
+                    ? <SortierDialog onDialogClose={this.closeSortierDialog}/>
+                    : ''
+                }
+            </div>
+        )
+    }
+}
+
+
+
+/*
     constructor() {
         super();
 
         this.state = {
             aktivegruppe: null,
             showGruppenDialog: false,
-            showSortierDialog: false,
-            showSettingsDialog: false
+            showShareDialog: false,
+            showWarenkorbDialog: false,
+            showGutscheineDialog: false,
+            showMemberDialog: false,
+            showFavoritenDialog: false
 
         }
         let gruppe1
@@ -43,112 +220,4 @@ class ShoppingTag extends React.Component {
         gekaufterArtikel.gekauft = true
 
     }
-
-    artikelHinzufuegen = () => {
-        let eingabe = document.getElementById("artikelEingabe")
-        console.debug(eingabe)
-        if (eingabe.value.trim().length > 0) {
-                let alle = App.gruppeFinden(App.aktiveGruppe)
-            alle.artikelHinzufuegen(eingabe.value)
-            this.setState(this.state)
-        }
-        eingabe.value = ""
-        eingabe.focus()
-    }
-
-    setAktiveGruppe = (gruppenId) => {
-        App.aktiveGruppe = gruppenId
-        this.setState({aktiveGruppe: App.aktiveGruppe})
-        console.debug(this.state.aktiveGruppe)
-    }
-    artikelChecken = (artikel) => {
-        artikel.gekauft = !artikel.gekauft
-        this.setState(this.state)
-    }
-    closesortierDialog = (reihenfolge, sortieren) => {
-
-    if(sortieren) {
-        App.sortieren(reihenfolge)
-    }
-    this.setState( {showSortierDialog: false})
-}
-
-closeSetupDialog = () => {
-    this.setState( {showSetupDialog: false})
-}
-
-
-render = () => {
-    return (
-
-        <div>
-
-            <header>
-                <h1>Einkaufsliste</h1>
-                <nav>
-                    <input id="artikelEingabe" type="text" placeholder="Artikel hinzufügen"/>
-                    <button onClick={() =>this.artikelHinzufuegen()} className="material-icons circle-orange">add_circle</button>
-                    <button className="material-icons card-blue">card_giftcard</button>
-                    <button className="material-icons member-blue">card_membership</button>
-
-                </nav>
-            </header>
-
-            <hr/>
-
-            <main>
-                <section>
-                    <h2>Einkaufen
-                        <i className="material-icons">expand_less</i>
-                    </h2>
-                    <dl>
-
-                        {App.gruppenListe.map(gruppe => (
-                            <GruppenTag key={gruppe.id} gruppe={gruppe} erledigt={false}
-                                        aktiveGruppeHandler={this.setAktiveGruppe}
-                                        checkHandler={this.artikelChecken}
-                                        aktiv={gruppe.id == App.aktiveGruppe}
-                            />
-                        ))}
-                    </dl>
-                </section>
-                <hr/>
-
-                <section>
-                    <h2>Erledigt
-                        <i className="material-icons">expand_less</i>
-                    </h2>
-                    <dl>
-                        {App.gruppenListe.map(gruppe => (
-                            <GruppenTag key={gruppe.id} gruppe={gruppe} erledigt={true}
-                                        aktiveGruppeHandler={this.setAktiveGruppe}
-                                        inaktiv={gruppe.id == App.oktiveGruppe}/>
-                        ))}
-                    </dl>
-                </section>
-            </main>
-            <hr/>
-
-
-            <footer>
-                <nav>
-                    <button onClick={()=>this.setState({showGruppenDialog:true})}>
-                        <span className="material-icons book-green">bookmark_add</span> Gruppen
-                    </button>
-                    <button onClick={()=>this.setState({showSortierDialog:true})}>
-                        <span className="material-icons sort-green">sort</span> Sortieren
-                    </button>
-                    <button onClick={()=>this.setState({showSettingsDialog:true})}>
-                        <span className="material-icons set-green">settings</span> Einstellungen
-                    </button>
-                </nav>
-            </footer>
-            <GruppenDialog visible={this.state.showGruppenDialog} onDialogClose={()=>this.setState({showGruppenDialog:false})} gruppenListe={App.gruppenListe}/>
-            <SortierDialog visible={this.state.showSortierDialog} onDialogClose={()=>this.setState({showSortierDialog:false})}/>
-            <SettingsDialog visible={this.state.showSettingsDialog} onDialogClose={()=>this.setState({showSettingsDialog:false})}/>
-        </div>
-
-
-    )
-}
-}
+ */

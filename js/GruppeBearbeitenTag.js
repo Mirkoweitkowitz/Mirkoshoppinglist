@@ -1,9 +1,9 @@
-class ArtikelTag extends React.Component {
+class GruppeBearbeitenTag extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             isEditing: false,
-            newName: this.props.artikel.name
+            newName: this.props.gruppe.name
         }
     }
 
@@ -11,38 +11,34 @@ class ArtikelTag extends React.Component {
         this.setState({newName: event.target.value})
     }
 
-    artikelUmbenennen(artikel, event) {
+    gruppeUmbenennen(gruppe, event) {
         if (event && event.key != "Enter") return
-        artikel.name = this.state.newName
+        gruppe.name = this.state.newName
         this.setState({isEditing: false})
     }
 
     render() {
-        const artikel = this.props.artikel
+        const gruppe = this.props.gruppe
 
         const viewTemplate = (
-            <dd>
-                <label><input type="checkbox" checked={artikel.gekauft}
-                              onChange={() => this.props.checkHandler(this.props.artikel)}/>
-                    {artikel.gekauft ? <s>{artikel.name}</s> : artikel.name}
-                </label>
+            <dt>
+                <span>{gruppe.name}</span>
                 <i className="material-icons button-white"
-                   onClick={() => this.setState({isEditing: true})}>edit </i>
-                <i className="material-icons button-white"
-                   onClick={this.props.deleteHandler}>delete </i>
-            </dd>
+                   onClick={() => this.setState({isEditing: true})}>
+                    drive_file_rename_outline</i>
+                <i className="material-icons button-white" onClick={this.props.entfernenHandler}>delete</i>
+            </dt>
         )
-
         const editTemplate = (
-            <dd>
+            <dt>
                 <input type="search" value={this.state.newName} autoFocus={true}
                        onChange={event => this.handleChange(event)}
-                       onKeyPress={event => this.artikelUmbenennen(artikel, event)}/>
+                       onKeyPress={event => this.gruppeUmbenennen(gruppe, event)}/>
                 <i className="material-icons button-white"
                    onClick={() => this.setState({isEditing: false})}>cancel </i>
                 <i className="material-icons button-white"
-                   onClick={() => this.artikelUmbenennen(artikel)}>check_circle </i>
-            </dd>
+                   onClick={() => this.gruppeUmbenennen(gruppe)}>check_circle </i>
+            </dt>
         )
 
         return (
@@ -51,4 +47,5 @@ class ArtikelTag extends React.Component {
                 : viewTemplate
         )
     }
+
 }

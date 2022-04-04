@@ -1,5 +1,5 @@
 #root {
-    width: 20rem;
+    width: 20.5rem;
     background-image: url("../img/markt.jpg");
     background-repeat: no-repeat;
     background-position: center center;
@@ -32,7 +32,8 @@ i.material-icons {
 }
 button.material-icons {
     font-size: inherit;
-    vertical-align: bottom
+    vertical-align: bottom;
+
 }
 [type="checkbox"] {
     vertical-align: top;
@@ -50,6 +51,7 @@ dt span {
 dd {
     display: flex;
     margin-left: 0;
+
 }
 label {
     width: 91%;
@@ -57,7 +59,8 @@ label {
 }
 footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+
 }
 
 .mdc-dialog {
@@ -72,7 +75,7 @@ footer {
     font-family: 'Material Icons';
     font-weight: normal;
     font-style: normal;
-    font-size: 24px;
+    font-size: 30px;
     line-height: 1;
     letter-spacing: normal;
     text-transform: none;
@@ -83,7 +86,15 @@ footer {
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
 }
-
+footer nav {
+    display:flex;
+    width: 100%;
+    justify-content: space-between;
+}
+footer nav button {
+    width: 33%;
+    border-radius: 10px;
+}
 button{
     cursor: pointer;
     pointer-events: visibleStroke ;
@@ -91,31 +102,47 @@ button{
 
 .button-yellow {
     background-color: #e7ac8d;
+    border-radius: 6px;
 }
 .card-blue {
     background-color: lightskyblue;
+    border-radius: 6px;
 }
 .member-blue {
     background-color: lightskyblue;
+    border-radius: 6px;
 }
 .book-green {
     background-color: greenyellow;
 }
+.button-footer {
+    background-color: white;
+    margin-bottom: 5px;
+}
 .sort-green {
+    background-color: greenyellow;
+}
+
+.share-green {
     background-color: greenyellow ;
 }
-.set-green {
+.warenkorb-green {
     background-color: greenyellow;
 }
 .circle-orange {
     background-color: #e7ac8d;
+    border-radius: 6px;
 }
 .button-white {
-    background-color: white;
+    background-color: #ffffff;
     color: #212121;
     padding: 6px;
     margin-left: 4px;
 }
 .gruppentitel {
     color: #212121;
+}
+.favorit-blue {
+    background-color: lightskyblue;
+    border-radius: 6px;
 }

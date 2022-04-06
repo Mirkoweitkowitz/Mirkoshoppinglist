@@ -59,24 +59,9 @@
       ]
     },
 
+
     {
-      "name": "Getränke",
       "index": 3,
-      "artikelListe": [
-        {
-          "name": "Selter",
-          "index": 0,
-          "gekauft": true
-        },
-        {
-          "name": "Cola",
-          "index": 1,
-          "gekauft": true
-        }
-      ]
-    },
-    {
-      "index": 4,
       "name": "Hülsenfrüchte",
       "artikelListe": [
         {
@@ -88,5 +73,5 @@
     }
   ],
 
-  "aktiveGruppe": 5
+  "aktiveGruppe": 4
 }

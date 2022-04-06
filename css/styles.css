@@ -4,9 +4,10 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
+
 }
 #container {
-    opacity: 85%;
+    opacity: 80%;
 }
 :root {
     --mdc-theme-primary: #33691E;
@@ -20,7 +21,7 @@ h2, dd {
     background-color: var(--mdc-theme-on-primary);
 }
 
-.aktiv { background-color: #0daae5
+.aktiv { background-color: #0e99d2
 }
 .inaktiv { background-color: #7CB342
 }

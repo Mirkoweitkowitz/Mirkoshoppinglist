@@ -1,16 +1,36 @@
+/**
+ * Hier werden die Artikel abgeändert über den Button: Edit
+ */
 class ArtikelTag extends React.Component {
     constructor(props) {
         super(props)
+        /**
+         *
+         * @type {{newName, isEditing: boolean}}
+         */
         this.state = {
+            /**
+             * schaltet den Edit Modus um für Artikel umbenennen
+             */
             isEditing: false,
+            /**
+             * enthält den Namen des Artikels im Edit-Modus
+             */
             newName: this.props.artikel.name
         }
     }
-
+    /**
+     * ändert den Modus
+     * @param event
+     */
     handleChange(event) {
         this.setState({newName: event.target.value})
     }
-
+    /**
+     * übernimmt den neuen Namen
+     * @param artikel
+     * @param event
+     */
     artikelUmbenennen(artikel, event) {
         if (event && event.key != "Enter") return
         artikel.name = this.state.newName
@@ -24,7 +44,11 @@ class ArtikelTag extends React.Component {
             <dd>
                 <label><input type="checkbox" checked={artikel.gekauft}
                               onChange={() => this.props.checkHandler(this.props.artikel)}/>
-                    {artikel.gekauft ? <s>{artikel.name}</s> : artikel.name}
+                    {artikel.gekauft ?
+                        /**
+                         * wird die Menge vor dem Namen angezeigt
+                         */
+                        <s>{artikel.name}</s> : artikel.name}
                 </label>
                 <i className="material-icons button-white"
                    onClick={() => this.setState({isEditing: true})}>edit </i>

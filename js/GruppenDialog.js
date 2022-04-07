@@ -1,13 +1,23 @@
+/**
+ * hier werden die Funktionen gezeigt, die man benutzt wenn die Gruppen bearbeitet werden, oder genutzt werden.
+ */
 class GruppenDialog extends React.Component {
     static eingabe = document.getElementById("eingabe")
 
     constructor(props) {
         super(props)
+        /**
+         * @property props
+         * {gruppenListe}: ([]|*),
+         */
         this.state = {
             gruppenListe: this.props.gruppenListe
         }
     }
-
+    /**
+     * @Funktion
+     * Das Hinzufügen der Gruppe als Funktion
+     */
     gruppeHinzufuegen() {
         if (eingabe.value.trim().length > 0) {
             App.gruppeHinzufuegen(eingabe.value)
@@ -16,7 +26,10 @@ class GruppenDialog extends React.Component {
         eingabe.value = ""
         eingabe.focus()
     }
-
+    /**
+     * gelöscht wird über einen vergleich der GruppenListen und die id ausgeführt hat
+     * @param id
+     */
     gruppeEntfernen(gruppe) {
         App.gruppeEntfernen(gruppe)
         this.setState({gruppenListe: App.gruppenListe})
@@ -24,6 +37,9 @@ class GruppenDialog extends React.Component {
 
     render() {
         return (
+            /**
+             * die erste Konstruktion öffnet ein fenster dort kan man die Gruppen bearbeiten
+             */
             <div className={'mdc-dialog ' + (this.props.visible ? 'mdc-dialog--open' : '')}>
                 <div className="mdc-dialog__container">
                     <div className="mdc-dialog__surface">

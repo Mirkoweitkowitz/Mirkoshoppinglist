@@ -1,3 +1,9 @@
+/**
+ * werden die Artikel festgelegt
+ * @param {name}
+ * @param {index}
+ * @param {menge}
+ */
 class Artikel {
     static artikelCounter = 1
 

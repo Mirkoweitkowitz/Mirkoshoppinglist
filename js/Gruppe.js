@@ -1,6 +1,14 @@
+/**
+ * Die Klasse Gruppe beinhaltet die Funktionen der Artikel
+ */
 class Gruppe {
     static gruppenCounter = 1
 
+    /**
+     *
+     * @param name
+     * @param index
+     */
     constructor(name, index) {
         this.id = Gruppe.gruppenCounter++
         this.index = index
@@ -8,6 +16,12 @@ class Gruppe {
         this.artikelListe = []
     }
 
+    /**
+     *
+     * @param suchName
+     * @param meldungAusgeben
+     * @returns {null|*}
+     */
     artikelFinden(suchName, meldungAusgeben) {
         let gefundeneArtikel = this.artikelListe.filter(artikel => artikel.name === suchName)
         if (gefundeneArtikel.length > 0) {
@@ -18,7 +32,10 @@ class Gruppe {
         }
         return null
     }
-
+    /**
+     *
+     * @param gekauft
+     */
     artikelAuflisten(gekauft) {
         this.artikelListe.map(artikel => {
             if (artikel.gekauft === gekauft) {
@@ -26,7 +43,12 @@ class Gruppe {
             }
         })
     }
-
+    /**
+     *
+     * @param name
+     * @param menge
+     * @returns {Artikel}
+     */
     artikelHinzufuegen(name) {
         let vorhandenerArtikel = this.artikelFinden(name, false)
         if (!vorhandenerArtikel) {
@@ -38,13 +60,20 @@ class Gruppe {
             App.informieren(`[${this.name}] Artikel "${name}" existiert schon!`, true)
         }
     }
-
+    /**
+     *
+     * @param artikel
+     */
     artikelObjektHinzufuegen(artikel) {
         let neuerArtikel = this.artikelHinzufuegen(artikel.name)
         // kopiert alle Properties aus "artikel" nach "neuerArtikel"
         Object.assign(neuerArtikel, artikel)
     }
-
+    /**
+     *
+     * @param alterName
+     * @param neuerName
+     */
     artikelUmbenennen(alterName, neuerName) {
         let artikel = this.artikelFinden(alterName, true)
         if (artikel) {
@@ -52,7 +81,10 @@ class Gruppe {
             App.informieren(`[${this.name}] Artikel "${alterName}" umbenannt in "${neuerName}"`)
         }
     }
-
+    /**
+     *
+     * @param name
+     */
     artikelEntfernen(name) {
         let artikel = this.artikelFinden(name, true)
         if (artikel) {

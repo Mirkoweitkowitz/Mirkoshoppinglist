@@ -18,9 +18,18 @@ class ShareDialog extends React.Component {
                     <div className= "mdc-dialog__surface">
                         <h2 className="mdc-dialog__title"> Teilen </h2>
                         <div className="mdc-dialog__content">
-                            <nav><input id="textfeld"/><button className="material-icons button-yellow" onClick={this.gruppeHinzufuegen}>add_circle</button></nav>
+                            <nav>
+                                <input type="text" id="eingabe" placeholder="Teilen"
+                                       onKeyUp={event => (event.keyCode == 13) ? this.gruppeHinzufuegen() : ''}/>
+                                <button className="material-icons circle-orange"
+                                        onClick={() => this.gruppeHinzufuegen()}>add_circle
+                                </button>
+                            </nav>
 
                             <hr/>
+
+
+
                         </div>
                         <div className="mdc-dialog__actions">
                             <button type="button" className="mdc-button mdc-dialog__button"

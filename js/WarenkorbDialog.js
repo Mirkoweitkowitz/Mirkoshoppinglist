@@ -7,18 +7,24 @@ class WarenkorbDialog extends React.Component {
             visible: true
         }
     }
-    gruppeHinzufuegen =()=>{
+
+    gruppeHinzufuegen = () => {
 
     }
     render = () => {
         return (
 
-            <div className={this.props.visible ?"mdc-dialog mdc-dialog--open": "mdc-dialog"}>
+            <div className={this.props.visible ? "mdc-dialog mdc-dialog--open" : "mdc-dialog"}>
                 <div className="mdc-dialog__container">
-                    <div className= "mdc-dialog__surface">
+                    <div className="mdc-dialog__surface">
                         <h2 className="mdc-dialog__title">Warenkorb bearbeiten</h2>
                         <div className="mdc-dialog__content">
-                            <nav><input id="textfeld"/><button className="material-icons button-yellow" onClick={this.gruppeHinzufuegen}>add_circle</button></nav>
+                            <nav>
+                                <input id="textfeld"/>
+                                <button className="material-icons button-yellow"
+                                        onClick={this.gruppeHinzufuegen}>add_circle
+                                </button>
+                            </nav>
 
                             <hr/>
                         </div>

@@ -6,11 +6,15 @@ class GruppeBearbeitenTag extends React.Component {
             newName: this.props.gruppe.name
         }
     }
-
+    /**
+     * Argumente an Event-Handler übergeben
+     */
     handleChange(event) {
         this.setState({newName: event.target.value})
     }
-
+    /**
+     * Gruppe wird dort über id und name umbenannt
+     */
     gruppeUmbenennen(gruppe, event) {
         if (event && event.key != "Enter") return
         gruppe.name = this.state.newName

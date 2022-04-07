@@ -1,3 +1,6 @@
+/**
+ * diese Methode bestimmt wie sie Funktionieren soll, um einen Artikel zu entfernen.
+ */
 class GruppenTag extends React.Component {
     constructor(props) {
         super(props);
@@ -5,12 +8,17 @@ class GruppenTag extends React.Component {
             aufgeklappt: true
         }
     }
-
+    /**
+     *hier wird der Artikelname entfernt
+     * @param artikel
+     */
     artikelEntfernen(artikel) {
         this.props.gruppe.artikelEntfernen(artikel)
         this.props.aktiveGruppeHandler(this.props.gruppe.id)
     }
-
+    /**
+     * die Funktion zeigt einmal die Liste an oder schleißt diese mit einem PfeilSymbol.
+     */
     aufZuKlappen() {
         this.setState({aufgeklappt: !this.state.aufgeklappt})
     }

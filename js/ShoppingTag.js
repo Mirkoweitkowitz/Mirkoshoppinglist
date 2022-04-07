@@ -34,7 +34,7 @@ class ShoppingTag extends React.Component {
             showMemberDialog: false,
             showFavoritenDialog: false,
             showSettingsDialog: false,
-            showAccountDialog: false,
+
 
         }
         /**
@@ -141,10 +141,7 @@ class ShoppingTag extends React.Component {
                                     onClick={() => this.setState({showSettingsDialog: true})}>
                                 settings
                             </button>
-                            <button className="material-icons member-blue"
-                                    onClick={() => this.setState({showAccountDialog: true})}>
-                                account_circle
-                            </button>
+
                         </nav>
                     </header>
                     <hr/>
@@ -216,8 +213,7 @@ class ShoppingTag extends React.Component {
                                  onDialogClose={() => this.setState({showFavoritenDialog: false})}/>
                 <SettingsDialog visible={this.state.showSettingsDialog}
                                 onDialogClose={() => this.setState({showSettingsDialog: false})}/>
-                <AccountDialog visible={this.state.showAccountDialog}
-                               onDialogClose={() => this.setState({showAccountDialog: false})}/>
+
 
 
                 {this.state.showSortierDialog

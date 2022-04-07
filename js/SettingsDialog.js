@@ -6,6 +6,9 @@ class SettingsDialog extends React.Component {
         this.state = {
             settingsListe: [],
             settings: "",
+            accountListe: [],
+            account: "",
+            showAccountDialog: false,
         }
     }
 
@@ -19,7 +22,15 @@ class SettingsDialog extends React.Component {
 
         this.setState({settings:e.target.value})
     }
+    accountHinzufuegen=()=> {
+        this.setState({accountListe:[...this.state.accountListe,this.state.account]})
+        this.setState({account:""})
+    }
 
+    accountInput=(e)=> {
+
+        this.setState({account:e.target.value})
+    }
 
     render() {
         return (
@@ -35,17 +46,33 @@ class SettingsDialog extends React.Component {
                             <button onClick={() => this.settingsHinzufuegen()}
                                     className="material-icons button-yellow">add_circle
                             </button>
+                            <hr/>
+                            <input onChange={this.accountInput} value={this.state.account} type="search" id="accountEingabe" placeholder="Account erstellen"
+                                   onKeyPress={e => (e.key == 'Enter') ? this.accountHinzufuegen() : ""}/>
+                            <button
+                                onClick={() => this.accountHinzufuegen()}
+                                    className="material-icons member-blue"> account_circle
+                            </button>
 
 
                         </nav>
 
                         <hr/>
 
-                        <dl className="mdc-deprecated-list">
+                        <dl className="mdc-deprecated-list"><h2>Einstellung</h2>
                             {this.state.settingsListe.map(settings => (
                                 <h4 key={settings}>{settings}</h4>
 
                             ))}
+
+                        </dl>
+                        <hr/>
+                        <dl className="mdc-deprecated-list"><h2>Profil</h2>
+                            {this.state.accountListe.map(account => (
+                                <h4 key={account}>{account}</h4>
+
+                            ))}
+
                         </dl>
 
 

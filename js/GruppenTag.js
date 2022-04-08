@@ -2,10 +2,10 @@
  * diese Methode bestimmt wie sie Funktionieren soll, um einen Artikel zu entfernen.
  */
 
-/**in diesem String sind die Gruppennamen für verfügbare GruppenIcons*/
+/**in diesem String sind die Gruppennamen für verfügbare GruppenIcons
 const gruppenNamen = ["Obst & Gemüse", "Milchprodukte", "Getränke", "Getreide produkte", "Fleischprodukte", "Eier", "Pilze"]
 //Bilder Icons größe
-const imagesize = 25
+const imagesize = 25*/
 
 
 class GruppenTag extends React.Component {
